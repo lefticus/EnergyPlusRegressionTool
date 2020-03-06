@@ -1,4 +1,5 @@
 os: linux
+dist: bionic
 language: python
 virtualenv:
   system_site_packages: true
@@ -19,9 +20,6 @@ install:
 
 matrix:
   include:
-  - name: "Python 3.5 Unit Tests"
-    python: 3.5
-    env: TEST_COMMAND=test
   - name: "Python 3.6 Unit Tests"
     python: 3.6
     env: TEST_COMMAND=test
@@ -32,7 +30,7 @@ matrix:
     python: 3.8
     env: TEST_COMMAND=test
   - name: "Python Code Quality"
-    python: 3.5
+    python: 3.8
     env: TEST_COMMAND=flake8
 
 script:
