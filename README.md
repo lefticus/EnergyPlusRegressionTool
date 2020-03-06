@@ -85,12 +85,12 @@ This was tested on Windows 7, and thanks to the PyGI packaging, it's not too har
 You just need to make sure you have a valid version of Python and then install PyGI into it.
 
 - Download and install a **valid** Python version from Python.org:
-  - **Valid Versions**: Up to 3.4, not newer, 32-or-64-bit)
+  - **Valid Versions**: 3.5 or above, 32-or-64-bit
   - https://www.python.org/downloads/windows/
 - Then grab the PyGI installer from here:
   - https://sourceforge.net/projects/pygobjectwin32/
 - During that install:
-  - Select your Python 3.4 installation folder
+  - Select your Python 3 installation folder
   - Select the GTK+ entry in the first list
   - That Python version will now have PyGTK in it.
 - Next you need to get the regression tool.
@@ -100,9 +100,9 @@ You just need to make sure you have a valid version of Python and then install P
 - Change into that directory:
   - `cd EnergyPlusRegressionTool`
 - Install the dependencies for the Regression tool using Pip:
-  - `C:\Python34\Scripts\pip3.exe install -r requirements.txt`
+  - `C:\Python38\Scripts\pip3.exe install -r requirements.txt`
 - Run the tool!
-  - `C:\Python34\python.exe eplus_regression_runner`
+  - `C:\Python38\python.exe eplus_regression_runner`
 
 ## Development
 

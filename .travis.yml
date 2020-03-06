@@ -19,13 +19,19 @@ install:
 
 matrix:
   include:
-  - name: "Python 2 Unit Test"
-    python: 2.7
-    env: TEST_COMMAND=test
-  - name: "Python 3 Unit Tests"
+  - name: "Python 3.5 Unit Tests"
     python: 3.5
     env: TEST_COMMAND=test
-  - name: "Python 3 Code Quality"
+  - name: "Python 3.6 Unit Tests"
+    python: 3.6
+    env: TEST_COMMAND=test
+  - name: "Python 3.7 Unit Tests"
+    python: 3.7
+    env: TEST_COMMAND=test
+  - name: "Python 3.8 Unit Tests"
+    python: 3.8
+    env: TEST_COMMAND=test
+  - name: "Python Code Quality"
     python: 3.5
     env: TEST_COMMAND=flake8
 
