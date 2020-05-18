@@ -806,6 +806,11 @@ class SuiteRunner:
                 join(case_result_dir_1, 'eplusout.audit'),
                 join(case_result_dir_2, 'eplusout.audit'),
                 join(out_dir, 'eplusout.audit.diff'))), TextDifferences.AUD)
+        if self.both_files_exist(case_result_dir_1, case_result_dir_2, 'eplusout.dbg'):
+            this_entry.add_text_differences(TextDifferences(self.diff_text_files(
+                join(case_result_dir_1, 'eplusout.dbg'),
+                join(case_result_dir_2, 'eplusout.dbg'),
+                join(out_dir, 'eplusout.dbg.diff'))), TextDifferences.DBG)
         if self.both_files_exist(case_result_dir_1, case_result_dir_2, 'eplusout.bnd'):
             this_entry.add_text_differences(TextDifferences(self.diff_text_files(
                 join(case_result_dir_1, 'eplusout.bnd'),

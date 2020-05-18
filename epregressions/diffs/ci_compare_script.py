@@ -24,8 +24,9 @@ def get_diff_files(out_dir):
 
 
 def cleanup(out_dir):
+    print("skipping cleanup")
     for this_file in get_diff_files(out_dir):
-        os.remove(this_file)
+        print("diff file: " + this_file);
 
 
 def print_message(msg):
@@ -82,6 +83,10 @@ def main_function(file_name, base_dir, mod_dir, base_sha, mod_sha, make_public, 
 
     # Note, comment out any of the "has_diffs" below if you don't want
     # it to generate an error condition
+
+    if entry.dbg_diffs and (entry.dbg_diffs.diff_type != TextDifferences.EQUAL):
+        has_small_diffs = True
+        print_message("DBG diffs.")
 
     if entry.aud_diffs and (entry.aud_diffs.diff_type != TextDifferences.EQUAL):
         has_small_diffs = True
@@ -197,7 +202,7 @@ def main_function(file_name, base_dir, mod_dir, base_sha, mod_sha, make_public, 
     if test_mode:
         print("Skipping Amazon upload in test_mode operation")
     elif has_small_diffs or has_diffs:  # pragma: no cover -- not testing the Amazon upload anytime soon
-        import boto
+#        import boto
 
         # so ... if you want to run tests of this script including the Amazon side, you need to pass in Amazon creds
         # to the boto connect_s3 method.  To run this test, put the amazon key and secret in a file, one per line.
@@ -208,9 +213,9 @@ def main_function(file_name, base_dir, mod_dir, base_sha, mod_sha, make_public, 
 
         # file_data = open('/path/to/s3/creds.txt').read().split('\n')
         # conn = boto.connect_s3(file_data[0], file_data[1])
-        conn = boto.connect_s3()
+#        conn = boto.connect_s3()
         bucket_name = 'energyplus'
-        bucket = conn.get_bucket(bucket_name)
+#        bucket = conn.get_bucket(bucket_name)
 
         potential_files = get_diff_files(base_dir)
 
@@ -228,6 +233,10 @@ def main_function(file_name, base_dir, mod_dir, base_sha, mod_sha, make_public, 
             if not os.stat(file_path_to_send).st_size > 0:
                 print("File is empty, not sending: {0}".format(file_path_to_send))
                 continue
+
+            print("diff file: " + file_path_to_send)
+            import boto
+            continue
 
             try:
                 file_path = "{0}/{1}".format(file_dir, os.path.basename(filename))
@@ -352,6 +361,7 @@ if __name__ == "__main__":  # pragma: no cover - testing function, not the __mai
 
     if len(sys.argv) < 8:
         print("syntax: %s file_name base_dir mod_dir base_sha mod_sha make_public device_id [test]" % sys.argv[0])
+        print("Got: %s" % sys.argv)
         sys.exit(1)
 
     arg_file_name = sys.argv[1]
