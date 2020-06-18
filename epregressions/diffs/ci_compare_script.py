@@ -88,6 +88,11 @@ def main_function(file_name, base_dir, mod_dir, base_sha, mod_sha, make_public, 
         has_small_diffs = True
         print_message("DBG diffs.")
 
+    if entry.w7_diffs and (entry.w7_diffs.diff_type != TextDifferences.EQUAL):
+        has_small_diffs = True
+        print_message("W7 diffs.")
+
+
     if entry.aud_diffs and (entry.aud_diffs.diff_type != TextDifferences.EQUAL):
         has_small_diffs = True
         print_message("AUD diffs.")

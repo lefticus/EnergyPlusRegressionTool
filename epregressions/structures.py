@@ -48,6 +48,7 @@ class TextDifferences:
     SCREEN = 19
     GLHE = 20
     DBG = 21
+    W7 = 22
     # diff types
     EQUAL = 1
     DIFFS = 2
@@ -167,6 +168,7 @@ class TestEntry:
         self.table_diffs = None
         self.aud_diffs = None
         self.dbg_diffs = None
+        self.w7_diffs = None
         self.bnd_diffs = None
         self.dxf_diffs = None
         self.eio_diffs = None
@@ -208,6 +210,8 @@ class TestEntry:
             self.aud_diffs = diffs
         elif diff_type == TextDifferences.DBG:
             self.dbg_diffs = diffs
+        elif diff_type == TextDifferences.W7:
+            self.w7_diffs = diffs
         elif diff_type == TextDifferences.BND:
             self.bnd_diffs = diffs
         elif diff_type == TextDifferences.DXF:
@@ -272,6 +276,8 @@ class TestEntry:
                 response['aud_diffs'] = self.aud_diffs.to_dict()
             if self.dbg_diffs:
                 response['dbg_diffs'] = self.dbg_diffs.to_dict()
+            if self.w7_diffs:
+                response['w7_diffs'] = self.w7_diffs.to_dict()
             if self.bnd_diffs:
                 response['bnd_diffs'] = self.bnd_diffs.to_dict()
             if self.dxf_diffs:
@@ -392,6 +398,7 @@ class CompletedStructure:
         text_diff_hash = {
             this_entry.aud_diffs: "audit",
             this_entry.dbg_diffs: "dbg",
+            this_entry.w7_diffs: "w7",
             this_entry.bnd_diffs: "bnd",
             this_entry.dxf_diffs: "dxf",
             this_entry.eio_diffs: "eio",
